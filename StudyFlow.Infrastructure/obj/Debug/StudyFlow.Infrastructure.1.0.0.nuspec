@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>StudyFlow.Infrastructure</id>
+    <version>1.0.0</version>
+    <authors>StudyFlow.Infrastructure</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="cff4d12876d69d5033d65fb84d0e6634fbc5e2ba" />
+    <dependencies>
+      <group targetFramework="net10.0">
+        <dependency id="StudyFlow.Domain" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="10.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Infrastructure\bin\Debug\net10.0\StudyFlow.Infrastructure.runtimeconfig.json" target="lib\net10.0\StudyFlow.Infrastructure.runtimeconfig.json" />
+    <file src="C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Infrastructure\bin\Debug\net10.0\StudyFlow.Infrastructure.dll" target="lib\net10.0\StudyFlow.Infrastructure.dll" />
+  </files>
+</package>

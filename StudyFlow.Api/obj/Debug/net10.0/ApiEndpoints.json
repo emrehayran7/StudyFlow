@@ -1,0 +1,842 @@
+[
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.AiRequest.CreateAiRequestEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateAiRequest\u003Eb__0_0",
+    "RelativePath": "api/airequests",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.AiRequest.CreateAiRequest.Request.CreateAiRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateAiRequest"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.AiRequest.GetAiRequestsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetAiRequests\u003Eb__0_0",
+    "RelativePath": "api/airequests",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAiRequests"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.AiRequest.UpdateAiRequestEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateAiRequest\u003Eb__0_0",
+    "RelativePath": "api/airequests/{aiRequestId:int}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aiRequestId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.AiRequest.UpdateAiRequest.Request.UpdateAiRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateAiRequest"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.AiRequest.DeleteAiRequestEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteAiRequest\u003Eb__0_0",
+    "RelativePath": "api/airequests/{aiRequestId:int}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aiRequestId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteAiRequest"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.AiRequest.GetAiRequestByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetAiRequestById\u003Eb__0_0",
+    "RelativePath": "api/airequests/{aiRequestId:int}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aiRequestId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAiRequestById"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Auth.LoginEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CLogin\u003Eb__0_0",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Auth.Request.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "Login"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Auth.LogoutEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CLogout\u003Eb__0_0",
+    "RelativePath": "api/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Auth.Logout.Request.LogoutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "Logout"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Auth.RefreshTokenEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CRefreshToken\u003Eb__0_0",
+    "RelativePath": "api/auth/refresh",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Auth.RefreshToken.Request.RefreshTokenDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "RefreshToken"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Auth.RegisterEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CRegister\u003Eb__0_0",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Auth.Register.Request.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "Register"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Course.UpdateCourseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateCourse\u003Eb__0_0",
+    "RelativePath": "api/courses/",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Course.UpdateCourse.Request.UpdateCourseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateCourse"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Course.DeleteCourseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteCourse\u003Eb__0_0",
+    "RelativePath": "api/courses/",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteCourse"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Course.CreateCourseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateCourse\u003Eb__0_0",
+    "RelativePath": "api/createcourse",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Course.CreateCourse.Request.CreateCourseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateCourse"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Topic.CreateTopicEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateTopic\u003Eb__0_0",
+    "RelativePath": "api/createtopic",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Topic.CreateTopic.Request.CreateTopicDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateTopic"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.FlashCard.GetFlashCardsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetFlashCards\u003Eb__0_0",
+    "RelativePath": "api/flashcards",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topicId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetFlashCards"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.FlashCard.CreateFlashCardEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateFlashCard\u003Eb__0_0",
+    "RelativePath": "api/flashcards",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.FlashCard.CreateFlashCard.Request.CreateFlashCardDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateFlashCard"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.FlashCard.GetFlashCardByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetFlashCardById\u003Eb__0_0",
+    "RelativePath": "api/flashcards/{flashCardId:int}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "flashCardId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetFlashCardById"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.FlashCard.UpdateFlashCardEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateFlashCard\u003Eb__0_0",
+    "RelativePath": "api/flashcards/{flashCardId:int}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "flashCardId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.FlashCard.UpdateFlashCard.Request.UpdateFlashCardDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateFlashCard"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.FlashCard.DeleteFlashCardEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteFlashCard\u003Eb__0_0",
+    "RelativePath": "api/flashcards/{flashCardId:int}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "flashCardId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteFlashCard"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.FlashCard.GenerateFlashCardsWithAiEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGenerateFlashCardsWithAi\u003Eb__0_0",
+    "RelativePath": "api/flashcards/generate-ai",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi.Request.GenerateFlashCardsWithAiDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GenerateFlashCardsWithAi"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.FlashCard.SaveGeneratedFlashCardsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CSaveGeneratedFlashCards\u003Eb__0_0",
+    "RelativePath": "api/flashcards/generated-ai/save",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards.Request.SaveGeneratedFlashCardsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "SaveGeneratedFlashCards"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Course.GetCourseByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetCourseById\u003Eb__0_0",
+    "RelativePath": "api/getcourseById",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetCourseById"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Course.GetCourseEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetCourse\u003Eb__0_0",
+    "RelativePath": "api/getcourses",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetCourses"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Note.GetNotesEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetNotes\u003Eb__0_0",
+    "RelativePath": "api/notes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topicId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetNotes"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Note.CreateNoteEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateNote\u003Eb__0_0",
+    "RelativePath": "api/notes",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Note.CreateNote.Request.CreateNoteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateNote"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Note.GetNoteByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetNoteById\u003Eb__0_0",
+    "RelativePath": "api/notes/{noteId:int}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetNoteById"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Note.UpdateNoteEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateNote\u003Eb__0_0",
+    "RelativePath": "api/notes/{noteId:int}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Note.UpdateNote.Request.UpdateNoteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateNote"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Note.DeleteNoteEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteNote\u003Eb__0_0",
+    "RelativePath": "api/notes/{noteId:int}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "noteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteNote"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.StudySession.GetStudySessionsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetStudySessions\u003Eb__0_0",
+    "RelativePath": "api/studysessions",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetStudySessions"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.StudySession.CreateStudySessionEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CCreateStudySession\u003Eb__0_0",
+    "RelativePath": "api/studysessions",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.StudySession.CreateStudySession.Request.CreateStudySessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "CreateStudySession"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.StudySession.GetStudySessionByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetStudySessionById\u003Eb__0_0",
+    "RelativePath": "api/studysessions/{id:int}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetStudySessionById"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.StudySession.UpdateStudySessionEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateStudySession\u003Eb__0_0",
+    "RelativePath": "api/studysessions/{id:int}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.StudySession.UpdateStudySession.Request.UpdateStudySessionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateStudySession"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.StudySession.DeleteStudySessionEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteStudySession\u003Eb__0_0",
+    "RelativePath": "api/studysessions/{id:int}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteStudySession"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Topic.GetTopicsEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetTopics\u003Eb__0_0",
+    "RelativePath": "api/topics",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetTopics"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Topic.UpdateTopicEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CUpdateTopic\u003Eb__0_0",
+    "RelativePath": "api/topics/{topicId:int}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topicId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "StudyFlow.Core.Commands.Topic.UpdateTopic.Request.UpdateTopicDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateTopic"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Commands.Topic.DeleteTopicEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CDeleteTopic\u003Eb__0_0",
+    "RelativePath": "api/topics/{topicId:int}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topicId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteTopic"
+  },
+  {
+    "ContainingType": "StudyFlow.Api.src.Queries.Topic.GetTopicByIdEndpoint\u002B\u003C\u003Ec",
+    "Method": "\u003CGetTopicById\u003Eb__0_0",
+    "RelativePath": "api/topics/{topicId:int}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "topicId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetTopicById"
+  }
+]

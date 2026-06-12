@@ -1,3 +1,7 @@
 <Solution>
-  <Project Path="StudyFlow/StudyFlow.csproj" />
+  <Project Path="StudyFlow.Api/StudyFlow.Api.csproj" />
+  <Project Path="StudyFlow.Core/StudyFlow.Core.csproj" Id="956d649a-fc6d-4436-8316-1cb5a8d01c64" />
+  <Project Path="StudyFlow.Domain/StudyFlow.Domain.csproj" Id="41e5a7e0-bae3-4d02-bc3e-aaa2e38bb415" />
+  <Project Path="StudyFlow.Infrastructure/StudyFlow.Infrastructure.csproj" Id="52f0d1a1-fda9-467d-9130-d8a1a14879a1" />
+  <Project Path="StudyFlow.Test/StudyFlow.Test.csproj" Id="c981f798-26f5-41b8-b12f-6f59ff92f0d6" />
 </Solution>

@@ -1,0 +1,9 @@
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.csproj.AssemblyReference.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.AssemblyInfoInputs.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.AssemblyInfo.cs
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.csproj.CoreCompileInputs.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow\obj\Debug\net10.0\StudyFlow.Application.sourcelink.json

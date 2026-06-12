@@ -1,0 +1,19 @@
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.AssemblyInfoInputs.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.AssemblyInfo.cs
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.csproj.CoreCompileInputs.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.sourcelink.json
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\bin\Debug\net10.0\StudyFlow.Core.deps.json
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\bin\Debug\net10.0\StudyFlow.Core.dll
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\bin\Debug\net10.0\StudyFlow.Core.pdb
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.dll
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\refint\StudyFlow.Core.dll
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.pdb
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\ref\StudyFlow.Core.dll
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\bin\Debug\net10.0\StudyFlow.Domain.dll
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\bin\Debug\net10.0\StudyFlow.Domain.pdb
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlow.Core.csproj.AssemblyReference.cache
+C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Core\obj\Debug\net10.0\StudyFlo.530B713C.Up2Date
+C:\tmp\StudyFlowApiBuild\StudyFlow.Core.deps.json
+C:\tmp\StudyFlowApiBuild\StudyFlow.Core.dll
+C:\tmp\StudyFlowApiBuild\StudyFlow.Core.pdb
