@@ -10,15 +10,16 @@ using StudyFlow.Api.src.Commands.FlashCard;
 using StudyFlow.Api.src.Commands.Note;
 using StudyFlow.Api.src.Commands.StudySession;
 using StudyFlow.Api.src.Commands.Topic;
+using StudyFlow.Api.src.Middleware;
 using StudyFlow.Api.src.Queries.AiRequest;
 using StudyFlow.Api.src.Queries.Course;
 using StudyFlow.Api.src.Queries.FlashCard;
 using StudyFlow.Api.src.Queries.Note;
 using StudyFlow.Api.src.Queries.StudySession;
 using StudyFlow.Api.src.Queries.Topic;
+using StudyFlow.Api.src.Services;
 using StudyFlow.Core.Auth;
 using StudyFlow.Core.Helper;
-using StudyFlow.Core.Mapper;
 using StudyFlow.Domain.Entities;
 using StudyFlow.Domain.Repository;
 using StudyFlow.Infrastructure.Services;
@@ -94,7 +95,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
-builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddDbContext<StudyFlowDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IStudyFlowRepository, StudyFlowRepository>();
@@ -116,6 +118,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAngular");
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseStudyFlowRequestMiddleware();
 app.UseAuthorization();
 
 app.CreateAiRequest();

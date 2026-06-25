@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Topic.CreateTopic.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Topic
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Topic
     {
         public static void CreateTopic(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/api/createtopic", async (CreateTopicDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPost("/api/createtopic", async (CreateTopicDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                CreateTopicCommand command = new CreateTopicCommand(dto, userId);
+                CreateTopicCommand command = new CreateTopicCommand(dto);
 
                 Result<int> result = await mediator.Send(command);
 

@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Queries.Note;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Queries.Note
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Queries.Note
     {
         public static void GetNoteById(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/notes/{noteId:int}", async (int noteId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapGet("/api/notes/{noteId:int}", async (int noteId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var result = await mediator.Send(new GetNoteByIdQuery(noteId, userId));
+                var result = await mediator.Send(new GetNoteByIdQuery(noteId));
 
                 if (result.IsSuccess)
                 {

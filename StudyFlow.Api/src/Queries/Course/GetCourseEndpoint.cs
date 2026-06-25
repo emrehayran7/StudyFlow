@@ -1,7 +1,5 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Queries.Course.Response;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Queries.Course
 {
@@ -9,10 +7,9 @@ namespace StudyFlow.Api.src.Queries.Course
     {
         public static void GetCourse(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/getcourses", async (ClaimsPrincipal user, IMediator mediator) =>
+            app.MapGet("/api/getcourses", async (IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                GetCoursesQuery query = new GetCoursesQuery(userId);
+                GetCoursesQuery query = new GetCoursesQuery();
                 List<GetCourseDto> result = await mediator.Send(query);
 
                 return Results.Ok(result);

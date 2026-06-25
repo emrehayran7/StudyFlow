@@ -4,5 +4,5 @@ using StudyFlow.Core.Results;
 
 namespace StudyFlow.Core.Queries.Topic.Response
 {
-    public record GetTopicsQuery(int CourseId, int UserId) : IRequest<Result<List<GetTopicDto>>>;
+    public record GetTopicsQuery(int CourseId) : IRequest<Result<List<GetTopicDto>>>;
 }

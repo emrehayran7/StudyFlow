@@ -1,8 +1,8 @@
-﻿using MediatR;
+using MediatR;
 using StudyFlow.Core.Results;
 
 namespace StudyFlow.Core.Commands.FlashCard.UpdateFlashCard.Request
 {
-    public record UpdateFlashCardCommand(int FlashCardId, UpdateFlashCardDto UpdateFlashCardDto, int UserId)
+    public record UpdateFlashCardCommand(int FlashCardId, UpdateFlashCardDto UpdateFlashCardDto)
         : IRequest<Result<int>>;
 }

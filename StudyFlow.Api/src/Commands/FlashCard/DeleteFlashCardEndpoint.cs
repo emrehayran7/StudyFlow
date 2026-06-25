@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.FlashCard.DeleteFlashCard.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.FlashCard
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.FlashCard
     {
         public static void DeleteFlashCard(this IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/flashcards/{flashCardId:int}", async (int flashCardId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapDelete("/api/flashcards/{flashCardId:int}", async (int flashCardId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var command = new DeleteFlashCardCommand(flashCardId, userId);
+                var command = new DeleteFlashCardCommand(flashCardId);
 
                 var result = await mediator.Send(command);
 

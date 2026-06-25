@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Topic.DeleteTopic.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Topic
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Topic
     {
         public static void DeleteTopic(this IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/topics/{topicId:int}", async (int topicId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapDelete("/api/topics/{topicId:int}", async (int topicId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                DeleteTopicCommand command = new DeleteTopicCommand(topicId, userId);
+                DeleteTopicCommand command = new DeleteTopicCommand(topicId);
 
                 Result<bool> result = await mediator.Send(command);
 

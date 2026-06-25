@@ -22,13 +22,13 @@ public class NoteHandlerTests
     public async Task Create_Should_ReturnFailure_When_Title_Is_Empty()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateNoteCommandHandler(dbContext);
+        var handler = new CreateNoteCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateNoteCommand(new CreateNoteDto
         {
             TopicId = 1,
             Title = "",
             Content = "Content"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -41,13 +41,13 @@ public class NoteHandlerTests
     {
         await using var dbContext = TestDbContextFactory.Create();
         var topic = SeedTopic(dbContext);
-        var handler = new CreateNoteCommandHandler(dbContext);
+        var handler = new CreateNoteCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateNoteCommand(new CreateNoteDto
         {
             TopicId = topic.Id,
             Title = "Note",
             Content = "Content"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -64,12 +64,12 @@ public class NoteHandlerTests
         dbContext.Notes.Add(note);
         await dbContext.SaveChangesAsync();
 
-        var handler = new UpdateNoteCommandHandler(dbContext);
+        var handler = new UpdateNoteCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new UpdateNoteCommand(note.Id, new UpdateNoteDto
         {
             Title = "Updated",
             Content = "Updated content"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -88,9 +88,9 @@ public class NoteHandlerTests
         dbContext.Notes.Add(note);
         await dbContext.SaveChangesAsync();
 
-        var handler = new DeleteNoteCommandHandler(dbContext);
+        var handler = new DeleteNoteCommandHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new DeleteNoteCommand(note.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new DeleteNoteCommand(note.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         dbContext.Notes.Should().BeEmpty();
@@ -105,9 +105,9 @@ public class NoteHandlerTests
         dbContext.Notes.Add(note);
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetNoteByIdQueryHandler(dbContext);
+        var handler = new GetNoteByIdQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetNoteByIdQuery(note.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetNoteByIdQuery(note.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value!.Id.Should().Be(note.Id);
@@ -122,9 +122,9 @@ public class NoteHandlerTests
         dbContext.Notes.Add(new NoteEntity { TopicId = topic.Id, Title = "Note" });
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetNotesQueryHandler(dbContext);
+        var handler = new GetNotesQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetNotesQuery(topic.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetNotesQuery(topic.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value.Should().HaveCount(1);

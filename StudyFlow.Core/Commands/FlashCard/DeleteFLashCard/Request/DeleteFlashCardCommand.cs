@@ -1,8 +1,8 @@
-﻿using MediatR;
+using MediatR;
 using StudyFlow.Core.Results;
 
 namespace StudyFlow.Core.Commands.FlashCard.DeleteFlashCard.Request
 {
-    public record DeleteFlashCardCommand(int FlashCardId, int UserId)
+    public record DeleteFlashCardCommand(int FlashCardId)
         : IRequest<Result<bool>>;
 }

@@ -8,6 +8,7 @@ using StudyFlow.Core.Results;
 using StudyFlow.Domain.Entities;
 using AiRequestEntity = StudyFlow.Domain.Entities.AiRequest;
 using FlashCardEntity = StudyFlow.Domain.Entities.FlashCard;
+using StudyFlow.Core.Helper;
 
 namespace StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards
 {
@@ -15,15 +16,19 @@ namespace StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards
     {
         private readonly StudyFlowDbContext _dbContext;
         private readonly IMemoryCache _memoryCache;
+        private readonly ICurrentUserService _currentUserService;
 
-        public SaveGeneratedFlashCardsCommandHandler(StudyFlowDbContext dbContext, IMemoryCache memoryCache)
+        public SaveGeneratedFlashCardsCommandHandler(StudyFlowDbContext dbContext, IMemoryCache memoryCache, ICurrentUserService currentUserService)
         {
             _dbContext = dbContext;
             _memoryCache = memoryCache;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<List<int>>> Handle(SaveGeneratedFlashCardsCommand request, CancellationToken cancellationToken)
         {
+            int userId = _currentUserService.GetUserId();
+
             SaveGeneratedFlashCardsDto dto = request.SaveGeneratedFlashCardsDto;
 
             var selectedTempIds = dto.TempIds
@@ -39,7 +44,7 @@ namespace StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards
             bool topicExists = await _dbContext.Topics
                 .AnyAsync(
                     x => x.Id == dto.TopicId &&
-                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == request.UserId),
+                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == userId),
                     cancellationToken);
 
             if (!topicExists)
@@ -47,7 +52,7 @@ namespace StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards
                 return Result<List<int>>.Failure(FlashCardErrors.TopicNotFound);
             }
 
-            string flashCardsCacheKey = GeneratedFlashCardCacheKeys.GetFlashCardsKey(request.UserId, dto.TopicId);
+            string flashCardsCacheKey = GeneratedFlashCardCacheKeys.GetFlashCardsKey(userId, dto.TopicId);
 
             if (!_memoryCache.TryGetValue(flashCardsCacheKey, out List<GeneratedFlashCardCacheDto>? cachedFlashCards) ||
                 cachedFlashCards == null ||
@@ -74,13 +79,13 @@ namespace StudyFlow.Core.Commands.FlashCard.SaveGeneratedFlashCards
                     Hint = x.Hint,
                     DifficultyLevel = x.DifficultyLevel,
                     CreatedAt = DateTime.UtcNow,
-                    CreatedBy = request.UserId.ToString()
+                    CreatedBy = userId.ToString()
                 })
                 .ToList();
 
             _dbContext.FlashCards.AddRange(flashCards);
 
-            string aiRequestCacheKey = GeneratedFlashCardCacheKeys.GetAiRequestKey(request.UserId, dto.TopicId);
+            string aiRequestCacheKey = GeneratedFlashCardCacheKeys.GetAiRequestKey(userId, dto.TopicId);
 
             if (_memoryCache.TryGetValue(aiRequestCacheKey, out AiRequestEntity? aiRequest) && aiRequest != null)
             {

@@ -1,4 +1,4 @@
-﻿using StudyFlow.Core.Commands.Course.CreateCourse.Request;
+using StudyFlow.Core.Commands.Course.CreateCourse.Request;
 using StudyFlow.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,11 @@ namespace StudyFlow.Core.Mapper
 {
     public static class UserCourseMapper
     {
-        public static UserCourse ToUserCourse(this CreateCourseCommand command)
+        public static UserCourse ToUserCourse(this CreateCourseCommand command, int userId)
         {
             return new UserCourse
             {
-                UserId = command.UserId
+                UserId = userId
             };
         }
     }

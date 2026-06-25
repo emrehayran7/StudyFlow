@@ -1,7 +1,5 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Course.DeleteCourse.Request;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Course
 {
@@ -9,10 +7,9 @@ namespace StudyFlow.Api.src.Commands.Course
     {
         public static void DeleteCourse(this IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/courses/", async (int courseId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapDelete("/api/courses/", async (int courseId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                DeleteCourseCommand command = new DeleteCourseCommand(courseId, userId);
+                DeleteCourseCommand command = new DeleteCourseCommand(courseId);
                 int result = await mediator.Send(command);
 
                 return Results.Ok(result);

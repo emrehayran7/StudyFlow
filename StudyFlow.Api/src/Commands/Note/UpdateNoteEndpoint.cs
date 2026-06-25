@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Note.UpdateNote.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Note
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Note
     {
         public static void UpdateNote(this IEndpointRouteBuilder app)
         {
-            app.MapPut("/api/notes/{noteId:int}", async (int noteId, UpdateNoteDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPut("/api/notes/{noteId:int}", async (int noteId, UpdateNoteDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                UpdateNoteCommand command = new UpdateNoteCommand(noteId, dto, userId);
+                UpdateNoteCommand command = new UpdateNoteCommand(noteId, dto);
 
                 Result<int> result = await mediator.Send(command);
 

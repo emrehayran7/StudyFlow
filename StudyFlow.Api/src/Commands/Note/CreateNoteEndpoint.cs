@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Note.CreateNote.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Note
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Note
     {
         public static void CreateNote(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/api/notes", async (CreateNoteDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPost("/api/notes", async (CreateNoteDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                CreateNoteCommand command = new CreateNoteCommand(dto, userId);
+                CreateNoteCommand command = new CreateNoteCommand(dto);
 
                 Result<int> result = await mediator.Send(command);
 

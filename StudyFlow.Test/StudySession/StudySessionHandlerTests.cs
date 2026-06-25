@@ -23,13 +23,13 @@ public class StudySessionHandlerTests
     public async Task Create_Should_ReturnFailure_When_Duration_Is_Invalid()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateStudySessionCommandHandler(dbContext);
+        var handler = new CreateStudySessionCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateStudySessionCommand(new CreateStudySessionDto
         {
             TopicId = 1,
             StartTime = DateTime.UtcNow,
             DurationMinutes = 0
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -43,14 +43,14 @@ public class StudySessionHandlerTests
         await using var dbContext = TestDbContextFactory.Create();
         var topic = SeedTopic(dbContext, 12);
         var startTime = DateTime.UtcNow;
-        var handler = new CreateStudySessionCommandHandler(dbContext);
+        var handler = new CreateStudySessionCommandHandler(dbContext, new FakeCurrentUserService(12));
         var command = new CreateStudySessionCommand(new CreateStudySessionDto
         {
             TopicId = topic.Id,
             StartTime = startTime,
             DurationMinutes = 30,
             SessionNotes = "Notes"
-        }, 12);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -78,13 +78,13 @@ public class StudySessionHandlerTests
         await dbContext.SaveChangesAsync();
 
         var startTime = DateTime.UtcNow.AddHours(1);
-        var handler = new UpdateStudySessionCommandHandler(dbContext);
+        var handler = new UpdateStudySessionCommandHandler(dbContext, new FakeCurrentUserService(4));
         var command = new UpdateStudySessionCommand(session.Id, new UpdateStudySessionDto
         {
             StartTime = startTime,
             DurationMinutes = 45,
             SessionNotes = "Updated"
-        }, 4);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -110,9 +110,9 @@ public class StudySessionHandlerTests
         dbContext.StudySessions.Add(session);
         await dbContext.SaveChangesAsync();
 
-        var handler = new DeleteStudySessionCommandHandler(dbContext);
+        var handler = new DeleteStudySessionCommandHandler(dbContext, new FakeCurrentUserService(4));
 
-        var result = await handler.Handle(new DeleteStudySessionCommand(session.Id, 4), CancellationToken.None);
+        var result = await handler.Handle(new DeleteStudySessionCommand(session.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         dbContext.StudySessions.Should().BeEmpty();
@@ -134,9 +134,9 @@ public class StudySessionHandlerTests
         dbContext.StudySessions.Add(session);
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetStudySessionByIdQueryHandler(dbContext);
+        var handler = new GetStudySessionByIdQueryHandler(dbContext, new FakeCurrentUserService(4));
 
-        var result = await handler.Handle(new GetStudySessionByIdQuery(session.Id, 4), CancellationToken.None);
+        var result = await handler.Handle(new GetStudySessionByIdQuery(session.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value!.Id.Should().Be(session.Id);
@@ -159,9 +159,9 @@ public class StudySessionHandlerTests
         await dbContext.SaveChangesAsync();
 
         var repository = new StudyFlowRepository(dbContext);
-        var handler = new GetStudySessionsQueryHandler(repository);
+        var handler = new GetStudySessionsQueryHandler(repository, new FakeCurrentUserService(4));
 
-        var result = await handler.Handle(new GetStudySessionsQuery(4), CancellationToken.None);
+        var result = await handler.Handle(new GetStudySessionsQuery(), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value.Should().HaveCount(1);

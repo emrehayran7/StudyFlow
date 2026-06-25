@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using StudyFlow.Core.Commands.Topic.UpdateTopic.Request;
 using StudyFlow.Core.Mapper;
@@ -7,20 +7,25 @@ using StudyFlow.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using StudyFlow.Core.Helper;
 
 namespace StudyFlow.Core.Commands.Topic.UpdateTopic
 {
     public class UpdateTopicHandler : IRequestHandler<UpdateTopicCommand, Result<int>>
     {
         private readonly StudyFlowDbContext _dbContext;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateTopicHandler(StudyFlowDbContext dbContext)
+        public UpdateTopicHandler(StudyFlowDbContext dbContext, ICurrentUserService currentUserService)
         {
             _dbContext = dbContext;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<int>> Handle(UpdateTopicCommand request, CancellationToken cancellationToken)
         {
+            int userId = _currentUserService.GetUserId();
+
             if (string.IsNullOrWhiteSpace(request.updateTopicDto.Title))
             {
                 return Result<int>.Failure(TopicErrors.TitleRequired);
@@ -34,7 +39,7 @@ namespace StudyFlow.Core.Commands.Topic.UpdateTopic
             Domain.Entities.Topic topic = await _dbContext.Topics
                 .FirstOrDefaultAsync(
                     x => x.Id == request.TopicId &&
-                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == request.UserId),
+                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == userId),
                     cancellationToken);
 
             if (topic == null)
@@ -45,7 +50,7 @@ namespace StudyFlow.Core.Commands.Topic.UpdateTopic
             bool courseExists = await _dbContext.Courses
                 .AnyAsync(
                     x => x.Id == request.updateTopicDto.CourseId &&
-                         x.UserCourses.Any(userCourse => userCourse.UserId == request.UserId),
+                         x.UserCourses.Any(userCourse => userCourse.UserId == userId),
                     cancellationToken);
 
             if (!courseExists)

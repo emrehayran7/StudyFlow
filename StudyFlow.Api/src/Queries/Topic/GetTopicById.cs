@@ -1,9 +1,7 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Queries.Topic.Response;
 using StudyFlow.Core.Queries.Topic.Response.StudyFlow.Core.Queries.Topic.Response;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Queries.Topic
 {
@@ -11,10 +9,9 @@ namespace StudyFlow.Api.src.Queries.Topic
     {
         public static void GetTopicById(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/topics/{topicId:int}", async (int topicId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapGet("/api/topics/{topicId:int}", async (int topicId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                GetTopicByIdQuery query = new GetTopicByIdQuery(topicId, userId);
+                GetTopicByIdQuery query = new GetTopicByIdQuery(topicId);
 
                 Result<GetTopicDto> result = await mediator.Send(query);
 

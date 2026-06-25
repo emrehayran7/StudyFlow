@@ -18,22 +18,26 @@ namespace StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi
         private readonly StudyFlowDbContext _dbContext;
         private readonly IAiService _aiService;
         private readonly IMemoryCache _memoryCache;
+        private readonly ICurrentUserService _currentUserService;
 
-        public GenerateFlashCardsWithAiCommandHandler(StudyFlowDbContext dbContext, IAiService aiService, IMemoryCache memoryCache)
+        public GenerateFlashCardsWithAiCommandHandler(StudyFlowDbContext dbContext, IAiService aiService, IMemoryCache memoryCache, ICurrentUserService currentUserService)
         {
             _dbContext = dbContext;
             _aiService = aiService;
             _memoryCache = memoryCache;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<List<GeneratedFlashCardCacheDto>>> Handle(
             GenerateFlashCardsWithAiCommand request,
             CancellationToken cancellationToken)
         {
+            int userId = _currentUserService.GetUserId();
+
             GenerateFlashCardsWithAiDto dto = request.GenerateFlashCardsWithAiDto;
 
             bool userExists = await _dbContext.Users
-                .AnyAsync(x => x.Id == request.UserId, cancellationToken);
+                .AnyAsync(x => x.Id == userId, cancellationToken);
 
             if (!userExists)
             {
@@ -45,7 +49,7 @@ namespace StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi
                 .Include(x => x.Notes)
                 .FirstOrDefaultAsync(
                     x => x.Id == dto.TopicId &&
-                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == request.UserId),
+                         x.Course.UserCourses.Any(userCourse => userCourse.UserId == userId),
                     cancellationToken);
 
             if (topic == null)
@@ -85,7 +89,7 @@ namespace StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi
                     Hint = string.IsNullOrWhiteSpace(x.Hint) ? "Review" : TrimToMaxLength(x.Hint.Trim(), 50),
                     DifficultyLevel = x.DifficultyLevel.GetValueOrDefault(difficultyLevel),
                     CreatedAt = now,
-                    CreatedBy = request.UserId.ToString()
+                    CreatedBy = userId.ToString()
                 })
                 .ToList();
 
@@ -96,7 +100,7 @@ namespace StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi
 
             AiRequestEntity aiRequest = new AiRequestEntity
             {
-                UserId = request.UserId,
+                UserId = userId,
                 TopicId = dto.TopicId,
                 RequestType = "GenerateFlashCards",
                 InputPrompt = aiPrompt,
@@ -104,8 +108,8 @@ namespace StudyFlow.Core.Commands.FlashCard.GenerateFlashCardsWithAi
                 CreatedAt = now
             };
 
-            string aiRequestCacheKey = GeneratedFlashCardCacheKeys.GetAiRequestKey(request.UserId, dto.TopicId);
-            string flashCardsCacheKey = GeneratedFlashCardCacheKeys.GetFlashCardsKey(request.UserId, dto.TopicId);
+            string aiRequestCacheKey = GeneratedFlashCardCacheKeys.GetAiRequestKey(userId, dto.TopicId);
+            string flashCardsCacheKey = GeneratedFlashCardCacheKeys.GetFlashCardsKey(userId, dto.TopicId);
 
             _memoryCache.Set(aiRequestCacheKey, aiRequest);
             _memoryCache.Set(flashCardsCacheKey, flashCardDtos);

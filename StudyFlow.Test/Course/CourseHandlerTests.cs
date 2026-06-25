@@ -22,12 +22,12 @@ public class CourseHandlerTests
     public async Task Create_Should_ReturnFailure_When_Title_Is_Empty()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateCourseCommandHandler(dbContext);
+        var handler = new CreateCourseCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateCourseCommand(new CreateCourseDto
         {
             Title = "",
             Description = "Test description"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -40,12 +40,12 @@ public class CourseHandlerTests
     public async Task Create_Should_Create_Course_When_Title_Is_Valid()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateCourseCommandHandler(dbContext);
+        var handler = new CreateCourseCommandHandler(dbContext, new FakeCurrentUserService(5));
         var command = new CreateCourseCommand(new CreateCourseDto
         {
             Title = "Math",
             Description = "Math course"
-        }, 5);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -68,12 +68,12 @@ public class CourseHandlerTests
     public async Task Update_Should_ReturnFailure_When_Course_Does_Not_Exist()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new UpdateCourseCommandHandler(dbContext);
+        var handler = new UpdateCourseCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new UpdateCourseCommand(99, new UpdateCourseDto
         {
             Title = "Updated",
             Description = "Updated description"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -90,12 +90,12 @@ public class CourseHandlerTests
         dbContext.Courses.Add(course);
         await dbContext.SaveChangesAsync();
 
-        var handler = new UpdateCourseCommandHandler(dbContext);
+        var handler = new UpdateCourseCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new UpdateCourseCommand(course.Id, new UpdateCourseDto
         {
             Title = "Updated",
             Description = "Updated description"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -115,9 +115,9 @@ public class CourseHandlerTests
         dbContext.UserCourses.Add(new UserCourse { CourseId = course.Id, UserId = 7 });
         await dbContext.SaveChangesAsync();
 
-        var handler = new DeleteCourseCommandHandler(dbContext);
+        var handler = new DeleteCourseCommandHandler(dbContext, new FakeCurrentUserService(7));
 
-        var result = await handler.Handle(new DeleteCourseCommand(course.Id, 7), CancellationToken.None);
+        var result = await handler.Handle(new DeleteCourseCommand(course.Id), CancellationToken.None);
 
         result.Should().Be(course.Id);
         dbContext.Courses.Should().BeEmpty();
@@ -134,9 +134,9 @@ public class CourseHandlerTests
         dbContext.UserCourses.Add(new UserCourse { CourseId = course.Id, UserId = 3 });
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetCourseByIdQueryHandler(dbContext);
+        var handler = new GetCourseByIdQueryHandler(dbContext, new FakeCurrentUserService(3));
 
-        var result = await handler.Handle(new GetCourseByIdQuery(3, course.Id), CancellationToken.None);
+        var result = await handler.Handle(new GetCourseByIdQuery(course.Id), CancellationToken.None);
 
         result.Id.Should().Be(course.Id);
         result.Title.Should().Be("Course");
@@ -153,9 +153,9 @@ public class CourseHandlerTests
         await dbContext.SaveChangesAsync();
 
         var repository = new StudyFlowRepository(dbContext);
-        var handler = new GetCourseQueryHandler(repository);
+        var handler = new GetCourseQueryHandler(repository, new FakeCurrentUserService(3));
 
-        var result = await handler.Handle(new GetCoursesQuery(3), CancellationToken.None);
+        var result = await handler.Handle(new GetCoursesQuery(), CancellationToken.None);
 
         result.Should().HaveCount(1);
         result[0].Id.Should().Be(course.Id);

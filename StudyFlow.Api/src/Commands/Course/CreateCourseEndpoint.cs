@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Course.CreateCourse.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Course
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Course
     {
         public static void CreateCourse(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/api/createcourse", async (CreateCourseDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPost("/api/createcourse", async (CreateCourseDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                CreateCourseCommand command = new CreateCourseCommand(dto, userId);
+                CreateCourseCommand command = new CreateCourseCommand(dto);
 
                 Result<int> result = await mediator.Send(command);
 

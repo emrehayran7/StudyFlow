@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.AiRequest.UpdateAiRequest.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.AiRequest
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.AiRequest
     {
         public static void UpdateAiRequest(this IEndpointRouteBuilder app)
         {
-            app.MapPut("/api/airequests/{aiRequestId:int}", async (int aiRequestId, UpdateAiRequestDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPut("/api/airequests/{aiRequestId:int}", async (int aiRequestId, UpdateAiRequestDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var result = await mediator.Send(new UpdateAiRequestCommand(aiRequestId, dto, userId));
+                var result = await mediator.Send(new UpdateAiRequestCommand(aiRequestId, dto));
 
                 if (result.IsSuccess)
                 {

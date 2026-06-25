@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Queries.FlashCard.Response;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Queries.FlashCard
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Queries.FlashCard
     {
         public static void GetFlashCards(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/flashcards", async (int topicId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapGet("/api/flashcards", async (int topicId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var result = await mediator.Send(new GetFlashCardsQuery(topicId, userId));
+                var result = await mediator.Send(new GetFlashCardsQuery(topicId));
 
                 if (result.IsSuccess)
                 {

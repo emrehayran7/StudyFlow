@@ -21,13 +21,13 @@ public class TopicHandlerTests
     public async Task Create_Should_ReturnFailure_When_Course_Does_Not_Exist()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateTopicCommandHandler(dbContext);
+        var handler = new CreateTopicCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateTopicCommand(new CreateTopicDto
         {
             CourseId = 99,
             Title = "Topic",
             Status = "Pending"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -44,7 +44,7 @@ public class TopicHandlerTests
         dbContext.Courses.Add(course);
         await dbContext.SaveChangesAsync();
 
-        var handler = new CreateTopicCommandHandler(dbContext);
+        var handler = new CreateTopicCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateTopicCommand(new CreateTopicDto
         {
             CourseId = course.Id,
@@ -52,7 +52,7 @@ public class TopicHandlerTests
             Description = "Description",
             Status = "Pending",
             PriorityLevel = 2
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -64,13 +64,13 @@ public class TopicHandlerTests
     public async Task Update_Should_ReturnFailure_When_Topic_Does_Not_Exist()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new UpdateTopicHandler(dbContext);
+        var handler = new UpdateTopicHandler(dbContext, new FakeCurrentUserService(1));
         var command = new UpdateTopicCommand(99, new UpdateTopicDto
         {
             CourseId = 1,
             Title = "Updated",
             Status = "InProgress"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -88,7 +88,7 @@ public class TopicHandlerTests
         dbContext.Topics.Add(topic);
         await dbContext.SaveChangesAsync();
 
-        var handler = new UpdateTopicHandler(dbContext);
+        var handler = new UpdateTopicHandler(dbContext, new FakeCurrentUserService(1));
         var command = new UpdateTopicCommand(topic.Id, new UpdateTopicDto
         {
             CourseId = course.Id,
@@ -96,7 +96,7 @@ public class TopicHandlerTests
             Description = "Updated description",
             Status = "Done",
             PriorityLevel = 5
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -117,9 +117,9 @@ public class TopicHandlerTests
         dbContext.Topics.Add(topic);
         await dbContext.SaveChangesAsync();
 
-        var handler = new DeleteTopicCommandHandler(dbContext);
+        var handler = new DeleteTopicCommandHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new DeleteTopicCommand(topic.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new DeleteTopicCommand(topic.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         dbContext.Topics.Should().BeEmpty();
@@ -135,9 +135,9 @@ public class TopicHandlerTests
         dbContext.Topics.Add(topic);
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetTopicByIdQueryHandler(dbContext);
+        var handler = new GetTopicByIdQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetTopicByIdQuery(topic.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetTopicByIdQuery(topic.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value!.Id.Should().Be(topic.Id);
@@ -153,9 +153,9 @@ public class TopicHandlerTests
         dbContext.Topics.Add(new TopicEntity { Course = course, Title = "Topic", Status = "Pending" });
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetTopicsQueryHandler(dbContext);
+        var handler = new GetTopicsQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetTopicsQuery(course.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetTopicsQuery(course.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value.Should().HaveCount(1);

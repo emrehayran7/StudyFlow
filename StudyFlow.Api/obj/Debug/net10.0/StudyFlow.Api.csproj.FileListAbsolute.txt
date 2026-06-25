@@ -169,7 +169,6 @@ C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\MediatR.Contracts.dll
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
-C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\AutoMapper.dll
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\OpenAI.dll
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\BCrypt-Net-Next.dll
 C:\Users\Emre\Desktop\new zeland project\StudyFlow\StudyFlow.Api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

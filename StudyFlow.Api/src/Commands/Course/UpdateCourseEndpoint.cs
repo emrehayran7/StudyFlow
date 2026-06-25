@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Course.UpdateCourse.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Course
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Course
     {
         public static void UpdateCourse(this IEndpointRouteBuilder app)
         {
-            app.MapPut("/api/courses/", async (int courseId, UpdateCourseDto dto, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapPut("/api/courses/", async (int courseId, UpdateCourseDto dto, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                UpdateCourseCommand command = new UpdateCourseCommand(courseId, dto, userId);
+                UpdateCourseCommand command = new UpdateCourseCommand(courseId, dto);
                 Result<int> result = await mediator.Send(command);
 
                 if (result.IsSuccess)

@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "3WbPhYcw/U4=",
+  "dgSpecHash": "T8L8s9IAxEE=",
   "success": true,
   "projectFilePath": "C:\\Users\\Emre\\Desktop\\new zeland project\\StudyFlow\\StudyFlow.Infrastructure\\StudyFlow.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Emre\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\Emre\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Emre\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\Emre\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",

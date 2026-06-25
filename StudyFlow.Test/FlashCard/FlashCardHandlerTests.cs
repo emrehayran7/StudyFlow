@@ -22,13 +22,13 @@ public class FlashCardHandlerTests
     public async Task Create_Should_ReturnFailure_When_Question_Is_Empty()
     {
         await using var dbContext = TestDbContextFactory.Create();
-        var handler = new CreateFlashCardCommandHandler(dbContext);
+        var handler = new CreateFlashCardCommandHandler(dbContext, new FakeCurrentUserService(1));
         var command = new CreateFlashCardCommand(new CreateFlashCardDto
         {
             TopicId = 1,
             Question = "",
             Answer = "Answer"
-        }, 1);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -41,7 +41,7 @@ public class FlashCardHandlerTests
     {
         await using var dbContext = TestDbContextFactory.Create();
         var topic = SeedTopic(dbContext, 9);
-        var handler = new CreateFlashCardCommandHandler(dbContext);
+        var handler = new CreateFlashCardCommandHandler(dbContext, new FakeCurrentUserService(9));
         var command = new CreateFlashCardCommand(new CreateFlashCardDto
         {
             TopicId = topic.Id,
@@ -49,7 +49,7 @@ public class FlashCardHandlerTests
             Answer = "Answer",
             Hint = "Hint",
             DifficultyLevel = 2
-        }, 9);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -76,14 +76,14 @@ public class FlashCardHandlerTests
         dbContext.FlashCards.Add(flashCard);
         await dbContext.SaveChangesAsync();
 
-        var handler = new UpdateFlashCardCommandHandler(dbContext);
+        var handler = new UpdateFlashCardCommandHandler(dbContext, new FakeCurrentUserService(8));
         var command = new UpdateFlashCardCommand(flashCard.Id, new UpdateFlashCardDto
         {
             Question = "Updated question",
             Answer = "Updated answer",
             Hint = "Updated",
             DifficultyLevel = 4
-        }, 8);
+        });
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -103,9 +103,9 @@ public class FlashCardHandlerTests
         dbContext.FlashCards.Add(flashCard);
         await dbContext.SaveChangesAsync();
 
-        var handler = new DeleteFlashCardCommandHandler(dbContext);
+        var handler = new DeleteFlashCardCommandHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new DeleteFlashCardCommand(flashCard.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new DeleteFlashCardCommand(flashCard.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         dbContext.FlashCards.Should().BeEmpty();
@@ -120,9 +120,9 @@ public class FlashCardHandlerTests
         dbContext.FlashCards.Add(flashCard);
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetFlashCardByIdQueryHandler(dbContext);
+        var handler = new GetFlashCardByIdQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetFlashCardByIdQuery(flashCard.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetFlashCardByIdQuery(flashCard.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value!.Id.Should().Be(flashCard.Id);
@@ -137,9 +137,9 @@ public class FlashCardHandlerTests
         dbContext.FlashCards.Add(new FlashCardEntity { TopicId = topic.Id, Question = "Question", Answer = "Answer", Hint = "Hint" });
         await dbContext.SaveChangesAsync();
 
-        var handler = new GetFlashCardsQueryHandler(dbContext);
+        var handler = new GetFlashCardsQueryHandler(dbContext, new FakeCurrentUserService(1));
 
-        var result = await handler.Handle(new GetFlashCardsQuery(topic.Id, 1), CancellationToken.None);
+        var result = await handler.Handle(new GetFlashCardsQuery(topic.Id), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
         result.Value.Should().HaveCount(1);

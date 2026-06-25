@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.AiRequest.DeleteAiRequest.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.AiRequest
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.AiRequest
     {
         public static void DeleteAiRequest(this IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/airequests/{aiRequestId:int}", async (int aiRequestId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapDelete("/api/airequests/{aiRequestId:int}", async (int aiRequestId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var result = await mediator.Send(new DeleteAiRequestCommand(aiRequestId, userId));
+                var result = await mediator.Send(new DeleteAiRequestCommand(aiRequestId));
 
                 if (result.IsSuccess)
                 {

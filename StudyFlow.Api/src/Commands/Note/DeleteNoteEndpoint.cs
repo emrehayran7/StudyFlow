@@ -1,8 +1,6 @@
 using MediatR;
-using StudyFlow.Api.src.Extensions;
 using StudyFlow.Core.Commands.Note.DeleteNote.Request;
 using StudyFlow.Core.Results;
-using System.Security.Claims;
 
 namespace StudyFlow.Api.src.Commands.Note
 {
@@ -10,10 +8,9 @@ namespace StudyFlow.Api.src.Commands.Note
     {
         public static void DeleteNote(this IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/notes/{noteId:int}", async (int noteId, ClaimsPrincipal user, IMediator mediator) =>
+            app.MapDelete("/api/notes/{noteId:int}", async (int noteId, IMediator mediator) =>
             {
-                int userId = user.GetUserId();
-                var command = new DeleteNoteCommand(noteId, userId);
+                var command = new DeleteNoteCommand(noteId);
 
                 var result = await mediator.Send(command);
 
